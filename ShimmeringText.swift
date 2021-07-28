@@ -12,7 +12,7 @@ struct ShimmeringText: View {
     @State var confettiStarted: Bool
     
     var body: some View {
-        let firstFontSize = CGFloat.random(in: 123...140)
+        let firstFontSize = CGFloat.random(in: 123...148)
         
         return VStack(spacing: 15) {
             ZStack {

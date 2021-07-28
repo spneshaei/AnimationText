@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var finishedAnimation = false
     @State private var confettiStarted = false
     @State private var shimmerAnimation = false
+    @State private var shouldBeFullScreen = false
     
     var body: some View {
         ZStack {
@@ -28,10 +29,10 @@ struct ContentView: View {
             ShimmeringText(shimmerAnimation: shimmerAnimation, confettiStarted: confettiStarted)
                 .padding()
                 .rotation3DEffect(.degrees(finishedAnimation ? 0 : 20), axis: (x: 1, y: 0, z: 0))
-                .shadow(color: .gray, radius: 2.75, x: 0, y: 15)
+                .shadow(color: .gray, radius: 2.25, x: 0, y: 15)
                 .frame(height: startedAnimation ? 750 : 0)
                 .onAppear {
-                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in DispatchQueue.main.async {
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in DispatchQueue.main.async {
                         withAnimation { shimmerAnimation.toggle() }
                     } }
                     
@@ -39,7 +40,12 @@ struct ContentView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         withAnimation { finishedAnimation.toggle() }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            withAnimation { confettiStarted.toggle() }
+                            withAnimation {
+                                confettiStarted.toggle()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    shouldBeFullScreen = true
+                                }
+                            }
                         }
                     }
                 }
@@ -52,7 +58,7 @@ struct ContentView: View {
             }
         
         }
-        .background(LinearGradient(gradient: Gradient(colors: [.red, .blue]), startPoint: .top, endPoint: .bottom).ignoresSafeArea().edgesIgnoringSafeArea(.all))
+        .background(shouldBeFullScreen ? AnyView(LinearGradient(gradient: Gradient(colors: [.red, .blue]), startPoint: .top, endPoint: .bottom).ignoresSafeArea().edgesIgnoringSafeArea(.all)) : AnyView(LinearGradient(gradient: Gradient(colors: [.red, .blue]), startPoint: .top, endPoint: .bottom).ignoresSafeArea().edgesIgnoringSafeArea(.all).cornerRadius(20)))
     }
 }
 
