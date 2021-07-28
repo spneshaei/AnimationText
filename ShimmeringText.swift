@@ -12,8 +12,7 @@ struct ShimmeringText: View {
     @State var confettiStarted: Bool
     
     var body: some View {
-        let firstFontSize = CGFloat.random(in: 123...147)
-        let secoondFontSize = CGFloat.random(in: 73...87)
+        let firstFontSize = CGFloat.random(in: 123...140)
         
         return VStack(spacing: 15) {
             ZStack {
@@ -46,7 +45,8 @@ struct ShimmeringText: View {
             }
             ZStack {
                 Text("Summer 1400")
-                    .animatableFont(size: secoondFontSize)
+                    .font(.system(size: 80, weight: .bold))
+//                    .animatableFont(size: secoondFontSize)
                     .foregroundColor(.black.opacity(0.5))
                     .multilineTextAlignment(.center)
                     .lineSpacing(10)
@@ -54,8 +54,8 @@ struct ShimmeringText: View {
                 HStack(spacing: 0) {
                     ForEach(0 ..< "Summer 1400".count, id: \.self) { index in
                         Text(String("Summer 1400"["Summer 1400".index("Summer 1400".startIndex, offsetBy: index)]))
-//                            .font(.system(size: .random(in: 80...90), weight: .bold))
-                            .animatableFont(size: secoondFontSize)
+                            .font(.system(size: 80, weight: .bold))
+//                            .animatableFont(size: secoondFontSize)
                             .foregroundColor(Color.white)
                             .colorMultiply(randomColor)
                     }

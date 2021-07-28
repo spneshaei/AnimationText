@@ -21,7 +21,7 @@ public struct ShimmerView: View {
     var animation: Animation {
         Animation
             .default
-            .speed(0.25)
+            .speed(0.1)
             .delay(0)
             .repeatForever(autoreverses: false)
     }

@@ -18,7 +18,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if confettiStarted {
-                ConfettiView(confetti: [.text("🎉"), .text("🥳"), .text("☀️")])
+                ConfettiView(confetti: [.text("🎉"), .text("🎉"), .text("🥳"), .text("☀️")])
             }
             
             EmptyView()
