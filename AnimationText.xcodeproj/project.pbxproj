@@ -19,6 +19,14 @@
 		42B9ACA426B132CF001ECB12 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B9AC7C26B132CC001ECB12 /* Persistence.swift */; };
 		42B9ACA526B132CF001ECB12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42B9AC7D26B132CF001ECB12 /* Assets.xcassets */; };
 		42B9ACA626B132CF001ECB12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42B9AC7D26B132CF001ECB12 /* Assets.xcassets */; };
+		42B9ACB626B1380F001ECB12 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B9ACB526B1380F001ECB12 /* ConfettiView.swift */; };
+		42B9ACB726B1380F001ECB12 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B9ACB526B1380F001ECB12 /* ConfettiView.swift */; };
+		42B9ACB926B13D3C001ECB12 /* ShimmeringText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B9ACB826B13D3C001ECB12 /* ShimmeringText.swift */; };
+		42B9ACBA26B13D3C001ECB12 /* ShimmeringText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B9ACB826B13D3C001ECB12 /* ShimmeringText.swift */; };
+		42B9ACBC26B16286001ECB12 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B9ACBB26B16285001ECB12 /* ChatBubble.swift */; };
+		42B9ACBD26B16286001ECB12 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B9ACBB26B16285001ECB12 /* ChatBubble.swift */; };
+		42B9ACBF26B16648001ECB12 /* Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B9ACBE26B16648001ECB12 /* Shimmer.swift */; };
+		42B9ACC026B16648001ECB12 /* Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B9ACBE26B16648001ECB12 /* Shimmer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +58,10 @@
 		42B9AC9126B132CF001ECB12 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		42B9AC9726B132CF001ECB12 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42B9AC9B26B132CF001ECB12 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		42B9ACB526B1380F001ECB12 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		42B9ACB826B13D3C001ECB12 /* ShimmeringText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmeringText.swift; sourceTree = "<group>"; };
+		42B9ACBB26B16285001ECB12 /* ChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
+		42B9ACBE26B16648001ECB12 /* Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +99,9 @@
 		42B9AC7226B132CC001ECB12 = {
 			isa = PBXGroup;
 			children = (
+				42B9ACBE26B16648001ECB12 /* Shimmer.swift */,
+				42B9ACBB26B16285001ECB12 /* ChatBubble.swift */,
+				42B9ACB826B13D3C001ECB12 /* ShimmeringText.swift */,
 				42B9AC7726B132CC001ECB12 /* Shared */,
 				42B9AC9026B132CF001ECB12 /* Tests iOS */,
 				42B9AC9A26B132CF001ECB12 /* Tests macOS */,
@@ -102,6 +117,7 @@
 				42B9AC7C26B132CC001ECB12 /* Persistence.swift */,
 				42B9AC7D26B132CF001ECB12 /* Assets.xcassets */,
 				42B9AC7826B132CC001ECB12 /* AnimationText.xcdatamodeld */,
+				42B9ACB526B1380F001ECB12 /* ConfettiView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -294,7 +310,11 @@
 				42B9AC9D26B132CF001ECB12 /* AnimationText.xcdatamodeld in Sources */,
 				42B9ACA326B132CF001ECB12 /* Persistence.swift in Sources */,
 				42B9AC9F26B132CF001ECB12 /* AnimationTextApp.swift in Sources */,
+				42B9ACB626B1380F001ECB12 /* ConfettiView.swift in Sources */,
 				42B9ACA126B132CF001ECB12 /* ContentView.swift in Sources */,
+				42B9ACBF26B16648001ECB12 /* Shimmer.swift in Sources */,
+				42B9ACB926B13D3C001ECB12 /* ShimmeringText.swift in Sources */,
+				42B9ACBC26B16286001ECB12 /* ChatBubble.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +325,11 @@
 				42B9AC9E26B132CF001ECB12 /* AnimationText.xcdatamodeld in Sources */,
 				42B9ACA426B132CF001ECB12 /* Persistence.swift in Sources */,
 				42B9ACA026B132CF001ECB12 /* AnimationTextApp.swift in Sources */,
+				42B9ACB726B1380F001ECB12 /* ConfettiView.swift in Sources */,
 				42B9ACA226B132CF001ECB12 /* ContentView.swift in Sources */,
+				42B9ACC026B16648001ECB12 /* Shimmer.swift in Sources */,
+				42B9ACBA26B13D3C001ECB12 /* ShimmeringText.swift in Sources */,
+				42B9ACBD26B16286001ECB12 /* ChatBubble.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

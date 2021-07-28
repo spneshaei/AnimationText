@@ -9,72 +9,87 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    
+    @State private var startedAnimation = false
+    @State private var finishedAnimation = false
+    @State private var confettiStarted = false
+    @State private var shimmerAnimation = false
+    
     var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+        ZStack {
+            if confettiStarted {
+                ConfettiView(confetti: [.text("🎉"), .text("🥳"), .text("☀️")])
             }
-            .onDelete(perform: deleteItems)
-        }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
-
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
+            
+            EmptyView()
+                .frame(width: 800, height: 800)
+                .cornerRadius(5)
+            
+            ShimmeringText(shimmerAnimation: shimmerAnimation, confettiStarted: confettiStarted)
+                .padding()
+                .rotation3DEffect(.degrees(finishedAnimation ? 0 : 20), axis: (x: 1, y: 0, z: 0))
+                .shadow(color: .gray, radius: 2.75, x: 0, y: 15)
+                .frame(height: startedAnimation ? 750 : 0)
+                .onAppear {
+                    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in DispatchQueue.main.async {
+                        withAnimation { shimmerAnimation.toggle() }
+                    } }
+                    
+                    startedAnimation.toggle()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation { finishedAnimation.toggle() }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            withAnimation { confettiStarted.toggle() }
+                        }
+                    }
+                }
+                .animation(.linear(duration: finishedAnimation ? 0.75 : 3))
+                
+            
+            if confettiStarted {
+                WelcomeView()
+                    .shimmer(isActive: true, speed: 0.2, angle: .degrees(70))
             }
+        
         }
+        .background(LinearGradient(gradient: Gradient(colors: [.red, .blue]), startPoint: .top, endPoint: .bottom).ignoresSafeArea().edgesIgnoringSafeArea(.all))
     }
+}
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
+}
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+struct ChatBubbleView: View {
+    var body: some View {
+        HStack {
+            Spacer()
+            ChatBubble(direction: .left) {
+                Text("Welcome!")
+                    .font(.largeTitle)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.green)
             }
+            .offset(x: 500, y: -200)
+            Spacer()
         }
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+struct WelcomeView: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            Text("Welcome to CodeStar!")
+                .foregroundColor(.white)
+                .bold()
+                .font(.system(size: 60))
+                .padding()
+                .cornerRadius(5)
+        }
+        .padding()
     }
 }
