@@ -17,7 +17,6 @@ struct ShimmeringText: View {
         return VStack(spacing: 15) {
             ZStack {
                 Text("CodeStar")
-//                    .font(.system(size: 125, weight: .bold))
                     .animatableFont(size: firstFontSize)
                     .foregroundColor(.black.opacity(0.5))
                     .multilineTextAlignment(.center)
@@ -26,27 +25,15 @@ struct ShimmeringText: View {
                 HStack(spacing: 0) {
                     ForEach(0 ..< "CodeStar".count, id: \.self) { index in
                         Text(String("CodeStar"["CodeStar".index("CodeStar".startIndex, offsetBy: index)]))
-//                            .font(.system(size: 105, weight: .bold))
                             .animatableFont(size: firstFontSize)
                             .foregroundColor(Color.white)
                             .colorMultiply(randomColor)
                     }
                 }
-//                .mask(
-//                Rectangle()
-//                    .fill(
-//                        LinearGradient(gradient: .init(colors: [.white.opacity(0.5), .white, .white.opacity(0.5)]), startPoint: .top, endPoint: .bottom)
-//                    )
-//                    .rotationEffect(.init(degrees: 70))
-//                    .padding(20)
-//                    .offset(x: -250)
-//                    .offset(x: shimmerAnimation ? 500 : 0)
-//                )
             }
             ZStack {
                 Text("Summer 1400")
                     .font(.system(size: 80, weight: .bold))
-//                    .animatableFont(size: secoondFontSize)
                     .foregroundColor(.black.opacity(0.5))
                     .multilineTextAlignment(.center)
                     .lineSpacing(10)
@@ -55,20 +42,11 @@ struct ShimmeringText: View {
                     ForEach(0 ..< "Summer 1400".count, id: \.self) { index in
                         Text(String("Summer 1400"["Summer 1400".index("Summer 1400".startIndex, offsetBy: index)]))
                             .font(.system(size: 80, weight: .bold))
-//                            .animatableFont(size: secoondFontSize)
                             .foregroundColor(Color.white)
                             .colorMultiply(randomColor)
                     }
                 }
             }
-        }
-        .onAppear {
-//            withAnimation(.linear(duration: 2).repeatForever(autoreverses: true)) {
-////                if hasMainAnimationFinished {
-////                    print("again")
-//                animation.toggle()
-////                }
-//            }
         }
     }
     
@@ -100,8 +78,6 @@ struct AnimatableCustomFontModifier: AnimatableModifier {
     }
 }
 
-// To make that easier to use, I recommend wrapping
-// it in a `View` extension, like this:
 extension View {
     func animatableFont(size: CGFloat) -> some View {
         self.modifier(AnimatableCustomFontModifier(size: size))
